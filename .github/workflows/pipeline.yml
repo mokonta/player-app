@@ -34,9 +34,9 @@ jobs:
     - name: FTP Deploy
       uses: modern-dev/ftp-mirror@v2
       with:
-        server: ftp.fasthosts.co.uk
-        user: deploy.player.okoro.org
-        password: xxx
+        server: ${{ secrets.FTP_SERVER_NAME }}
+        user: ${{ secrets.FTP_SERVER_USERNAME }}
+        password: ${{ secrets.FTP_SERVER_PASSWORD }}
         remote_dir: /htdocs
         delete: true
         
