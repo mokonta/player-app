@@ -35,7 +35,7 @@ jobs:
       uses: modern-dev/ftp-mirror@v2
       with:
         server: ${{ secrets.FTP_SERVER_NAME }}
-        user: ${{ secrets.FTP_SERVER_USERNAME }}
+        user: ${{ secrets.FTP_SERVER_USER }}
         password: ${{ secrets.FTP_SERVER_PASSWORD }}
         remote_dir: /htdocs
         delete: true
