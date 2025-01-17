@@ -37,7 +37,7 @@ jobs:
         server: ${{ secrets.FTP_SERVER_NAME }}
         user: ${{ secrets.FTP_SERVER_USER }}
         password: ${{ secrets.FTP_SERVER_PASSWORD }}
-        local_dir: ${{github.workspace }}/dist
+        local_dir: $GITHUB_WORKSPACE/dist
         remote_dir: /htdocs
         delete: true
         
