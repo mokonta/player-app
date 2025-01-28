@@ -1,0 +1,23 @@
+@if (isLoaded) {
+    <div class="container player-display">
+        <div class="row">
+            <div class="col now-playing">
+                <h3>Now</h3>
+                <p>
+                    {{ nowPlayingData.now_playing.song.title }} /
+                    {{ nowPlayingData.now_playing.song.artist }} <br />
+                    {{ elapsedTimeDisplay }} / {{ durationDisplay }}
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col next-up">
+                <h3>Next</h3>
+                <p>
+                    {{ nowPlayingData.playing_next.song.title }} /
+                    {{ nowPlayingData.playing_next.song.artist }}
+                </p>
+            </div>
+        </div>
+    </div>
+}
