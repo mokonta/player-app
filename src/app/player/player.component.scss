@@ -1,16 +1,21 @@
-app-player{
+app-player {
     width: 100%;
 }
 
-svg {
-    //height: 80%;
-    cursor: pointer;
+.player-btn {
+    text-align: center;
 
-    .playing {
-        stroke: orange; 
-    }
+    svg {
+        height: 400px;
+        cursor: pointer;
     
-    .paused {
-        stroke: grey;
+        .playing {
+            stroke: orange;
+        }
+    
+        .paused {
+            stroke: grey;
+        }
     }
 }
+

@@ -10,7 +10,7 @@ import { NowPlayingModel } from './radio-station-data/now-playing';
 
 export class RadioMetaService {
 
-  private nowPlayingUrl = "https://radio.okoro.org/api/nowplaying/okoro_radio";
+  private nowPlayingUrl = "https://stream.bigmixradio.uk/api/nowplaying/big_mix_radio";
 
   constructor(private http: HttpClient) { }
 

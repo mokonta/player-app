@@ -19,6 +19,8 @@ export class PlayerDisplayComponent {
   duration = 0;
   elapsedTimeDisplay = "";
   durationDisplay = "";
+  nowPlayingImage = "";
+  nextPlayingImage = "";
   private songId = "";
   private timerId:any;
   isLoaded = false;
@@ -61,6 +63,8 @@ export class PlayerDisplayComponent {
     this.durationDisplay = this.getMins(this.duration);
     this.elapsedTimeDisplay = this.getMins(this.elapsedTime);
     this.songId = nowPlayingData.now_playing.song.id;
+    this.nowPlayingImage = nowPlayingData.now_playing.song.art;
+    this.nextPlayingImage = nowPlayingData.playing_next.song.art;
     clearInterval(this.timerId);
     this.startTimer();
   }

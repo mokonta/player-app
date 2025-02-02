@@ -1,19 +1,28 @@
 .player-display {
-    text-align: center;
     // font-weight: bold;
-  }
+    width: 500px;
 
-  .now-playing {
-    color: #555;
-  }
+    .song-art {
+        text-align: right;
+    }
 
-  .next-up {
-    color: #aaa;
-  }
+    .now-playing {
+        color: #555;
+    }
+
+    .next-up {
+        color: #aaa;
+
+        img {
+            opacity: 0.5;
+        }
+    }
 
 
-h3 {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 0px;
+    h3 {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 0px;
+        text-align: center;
+    }
 }

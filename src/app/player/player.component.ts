@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './player.component.scss'
 })
 export class PlayerComponent {
-  audioSource = "https://radio.okoro.org/listen/okoro_radio/radio.mp3";
+  audioSource = "https://stream.bigmixradio.uk/listen/big_mix_radio/radio.mp3";
   audio = new Audio(this.audioSource);
   btnLabel = 'Play';
   playBtnClass = 'paused';

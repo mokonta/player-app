@@ -3,20 +3,34 @@
         <div class="row">
             <div class="col now-playing">
                 <h3>Now</h3>
-                <p>
-                    {{ nowPlayingData.now_playing.song.title }} /
-                    {{ nowPlayingData.now_playing.song.artist }} <br />
-                    {{ elapsedTimeDisplay }} / {{ durationDisplay }}
-                </p>
+                <div class="row">
+                    <div class="col song-art">
+                        <img [src]="nowPlayingImage" height="65" width="65" alt="dsd" />
+                    </div>
+                    <div class="col-7">
+                        <p>
+                            {{ nowPlayingData.now_playing.song.title }} <br />
+                            {{ nowPlayingData.now_playing.song.artist }} <br />
+                            {{ elapsedTimeDisplay }} / {{ durationDisplay }}
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col next-up">
                 <h3>Next</h3>
-                <p>
-                    {{ nowPlayingData.playing_next.song.title }} /
-                    {{ nowPlayingData.playing_next.song.artist }}
-                </p>
+                <div class="row">
+                    <div class="col song-art">
+                        <img [src]="nextPlayingImage" height="65" width="65" alt="dsd" />
+                    </div>
+                    <div class="col-7">
+                        <p>
+                            {{ nowPlayingData.playing_next.song.title }} <br />
+                            {{ nowPlayingData.playing_next.song.artist }} <br />
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
