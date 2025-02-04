@@ -5,9 +5,9 @@
             <h3>Now</h3>
             <div class="row">
                 <div class="col-3 song-art">
-                    <img [src]="nowPlayingImage" height="65" width="65" alt="dsd" />
+                    <img [ngSrc]="nowPlayingImage" height="65" width="65" alt="dsd" />
                 </div>
-                <div class="col">
+                <div class="col song-details">
                     <p>
                         {{ nowPlayingData.now_playing.song.title }} <br />
                         @if (nowPlayingDjUrl) {
@@ -27,9 +27,9 @@
             <h3>Next</h3>
             <div class="row">
                 <div class="col-3 song-art">
-                    <img [src]="nextPlayingImage" height="65" width="65" alt="dsd" />
+                    <img [ngSrc]="nextPlayingImage" height="65" width="65" alt="dsd" />
                 </div>
-                <div class="col">
+                <div class="col song-details">
                     <p>
                         {{ nowPlayingData.playing_next.song.title }} <br />
                         @if (nextDjUrl) {

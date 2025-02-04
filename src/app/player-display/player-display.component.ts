@@ -3,10 +3,11 @@ import { RadioMetaService } from '../shared/radio-meta.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { NowPlayingModel } from '../shared/radio-station-data/now-playing';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-player-display',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, NgOptimizedImage],
   templateUrl: './player-display.component.html',
   styleUrl: './player-display.component.scss'
 })
