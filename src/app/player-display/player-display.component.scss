@@ -1,9 +1,6 @@
 .player-display {
-    // font-weight: bold;
-    width: 500px;
-
+    
     .song-art {
-        text-align: right;
     }
 
     .now-playing {
@@ -20,9 +17,8 @@
 
 
     h3 {
-        font-size: 1.2em;
-        font-weight: bold;
-        margin-bottom: 0px;
-        text-align: center;
+        font-size: 1.3em;
+        //font-weight: bold;
+        margin-bottom: 0.2em;
     }
 }

@@ -21,6 +21,8 @@ export class PlayerDisplayComponent {
   durationDisplay = "";
   nowPlayingImage = "";
   nextPlayingImage = "";
+  nowPlayingDjUrl = "";
+  nextDjUrl = "";
   private songId = "";
   private timerId:any;
   isLoaded = false;
@@ -65,6 +67,18 @@ export class PlayerDisplayComponent {
     this.songId = nowPlayingData.now_playing.song.id;
     this.nowPlayingImage = nowPlayingData.now_playing.song.art;
     this.nextPlayingImage = nowPlayingData.playing_next.song.art;
+
+    if (nowPlayingData.now_playing.song.custom_fields.dj_url)
+    {
+      this.nowPlayingDjUrl = nowPlayingData.now_playing.song.custom_fields.dj_url;
+    }
+
+    if (nowPlayingData.playing_next.song.custom_fields.dj_url)
+      {
+        this.nextDjUrl = nowPlayingData.playing_next.song.custom_fields.dj_url;
+      }
+
+
     clearInterval(this.timerId);
     this.startTimer();
   }

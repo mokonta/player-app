@@ -1,3 +1,11 @@
+export class CustomFields {
+  dj_url: string;
+
+  constructor() {
+    this.dj_url = "";
+  }
+}
+
 export class Listeners {
   total: number;
   unique: number;
@@ -38,7 +46,7 @@ export class Song {
   lyrics: string;
   id: string;
   art: string;
-  custom_fields: string[];
+  custom_fields: CustomFields;
 
   constructor() {
     this.text = "";
@@ -50,7 +58,7 @@ export class Song {
     this.lyrics = "";
     this.id = "";
     this.art = "";
-    this.custom_fields = [];
+    this.custom_fields = new CustomFields();
   }
 }
 
