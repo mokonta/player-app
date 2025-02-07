@@ -1,7 +1,10 @@
 .player-display {
     
     .song-art img {
-        border-radius: 5px;
+        border-radius: 10px;
+        @media (min-width: 768px) {
+            margin-bottom: 2em;
+        }
     }
 
     .now-playing {
@@ -23,6 +26,6 @@
     }
 
     .song-details {
-        padding-left: 0.8em;
+        padding: 0.8em;
     }
 }

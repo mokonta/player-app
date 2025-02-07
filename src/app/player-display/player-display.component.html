@@ -4,8 +4,8 @@
         <div class="col now-playing">
             <h3>Now</h3>
             <div class="row">
-                <div class="col-3 song-art">
-                    <img [ngSrc]="nowPlayingImage" height="65" width="65" alt="dsd" />
+                <div class="col-12 col-md-2 song-art">
+                    <img [src]="nowPlayingImage" class="img-fluid" [alt]="nowPlayingData.now_playing.song.title" />
                 </div>
                 <div class="col song-details">
                     <p>
@@ -26,8 +26,8 @@
         <div class="col next-up">
             <h3>Next</h3>
             <div class="row">
-                <div class="col-3 song-art">
-                    <img [ngSrc]="nextPlayingImage" height="65" width="65" alt="dsd" />
+                <div class="col-12 col-md-2 song-art">
+                    <img [src]="nextPlayingImage" class="img-fluid" [alt]="nowPlayingData.playing_next.song.title" />
                 </div>
                 <div class="col song-details">
                     <p>
