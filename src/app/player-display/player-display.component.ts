@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { NowPlayingModel } from '../shared/radio-station-data/now-playing.model';
+import { StationDataModel } from '../shared/models/station-data.model';
 import { NgOptimizedImage } from '@angular/common';
 import { RadioWebSocketDataService } from '../shared/services/radio-web-socket-data.service';
 
@@ -13,7 +13,7 @@ import { RadioWebSocketDataService } from '../shared/services/radio-web-socket-d
 })
 export class PlayerDisplayComponent {
 
-  nowPlayingData: NowPlayingModel;
+  stationData: StationDataModel;
   elapsedTime: number;
   remainingTime: number;
   duration: number;
@@ -29,7 +29,7 @@ export class PlayerDisplayComponent {
   private messageSubscription: Subscription;
 
   constructor(private webSocketService: RadioWebSocketDataService) {
-    this.nowPlayingData = new NowPlayingModel();
+    this.stationData = new StationDataModel();
     this.elapsedTime = 0;
     this.remainingTime = 0;
     this.duration = 0;
@@ -46,43 +46,33 @@ export class PlayerDisplayComponent {
   }
 
   ngOnInit(): void {
-    const msg = { "subs": { "station:big_mix_radio": { "recover": true } } };
-    this.webSocketService.sendMessage(msg);
-
-    this.messageSubscription = this.webSocketService.getMessages().subscribe((message) => {
-      if ('connect' in message) {
-        const connectData = message.connect;
-
-        if ('data' in connectData) {
-          // Legacy SSE data
-          connectData.data.forEach(
-            (initialRow: any) => this.handleSseData(initialRow)
-          );
-        } else {
-          // New Centrifugo time format
-          // if ('time' in connectData) {
-          //   currentTime = Math.floor(connectData.time / 1000);
-          // }
-
-          // New Centrifugo cached NowPlaying initial push.
-          for (const subName in connectData.subs) {
-            const sub = connectData.subs[subName];
-            if ('publications' in sub && sub.publications.length > 0) {
-              sub.publications.forEach((initialRow: any) => this.handleSseData(initialRow));
-            }
-          }
-        }
-      } else if ('pub' in message) {
-        this.handleSseData(message.pub);
-      }
-    })
+    this.getNowPlayingData();
   }
 
-  private handleSseData(ssePayload: any) {
-    this.nowPlayingData = ssePayload.data.np;
+  private getNowPlayingData() {
+      this.messageSubscription = this.webSocketService.messages$.subscribe((message) => {
+      if (message.pub) {
+        this.handleMessageData(message.pub);
+      }
+      else if (message.connect) {
+        const connectData = message.connect;
+
+        // New Centrifugo cached NowPlaying initial push.
+        for (const subName in connectData.subs) {
+          const sub = connectData.subs[subName];
+          if ('publications' in sub && sub.publications.length > 0) {
+            sub.publications.forEach((initialRow: any) => this.handleMessageData(initialRow));
+          }
+        }
+      }
+    });
+  }
+
+  private handleMessageData(ssePayload: any) {
+    this.stationData = ssePayload.data.np;
     
-    if (this.songId != this.nowPlayingData.now_playing.song.id) {
-      this.resetDisplay(this.nowPlayingData); // song has changed
+    if (this.songId != this.stationData.now_playing.song.id) {
+      this.resetDisplay(this.stationData); // song has changed
     }
   }
 
@@ -95,23 +85,23 @@ export class PlayerDisplayComponent {
     }, 1000); // update about every second
   }
 
-  private resetDisplay(nowPlayingData: NowPlayingModel) {
-    this.nowPlayingData = nowPlayingData;
-    this.elapsedTime = nowPlayingData.now_playing.elapsed;
-    this.remainingTime = nowPlayingData.now_playing.remaining;
-    this.duration = nowPlayingData.now_playing.duration;
+  private resetDisplay(stationDataModel: StationDataModel) {
+    this.stationData = stationDataModel;
+    this.elapsedTime = stationDataModel.now_playing.elapsed;
+    this.remainingTime = stationDataModel.now_playing.remaining;
+    this.duration = stationDataModel.now_playing.duration;
     this.durationDisplay = this.getMins(this.duration);
     this.elapsedTimeDisplay = this.getMins(this.elapsedTime);
-    this.songId = nowPlayingData.now_playing.song.id;
-    this.nowPlayingImage = nowPlayingData.now_playing.song.art;
-    this.nextPlayingImage = nowPlayingData.playing_next.song.art;
+    this.songId = stationDataModel.now_playing.song.id;
+    this.nowPlayingImage = stationDataModel.now_playing.song.art;
+    this.nextPlayingImage = stationDataModel.playing_next.song.art;
 
-    if (nowPlayingData.now_playing.song.custom_fields.dj_url) {
-      this.nowPlayingDjUrl = nowPlayingData.now_playing.song.custom_fields.dj_url;
+    if (stationDataModel.now_playing.song.custom_fields.dj_url) {
+      this.nowPlayingDjUrl = stationDataModel.now_playing.song.custom_fields.dj_url;
     }
 
-    if (nowPlayingData.playing_next.song.custom_fields.dj_url) {
-      this.nextDjUrl = nowPlayingData.playing_next.song.custom_fields.dj_url;
+    if (stationDataModel.playing_next.song.custom_fields.dj_url) {
+      this.nextDjUrl = stationDataModel.playing_next.song.custom_fields.dj_url;
     }
 
     this.isLoaded = true;
@@ -124,5 +114,11 @@ export class PlayerDisplayComponent {
     var secondsDisplay = seconds % 60;
     var timeDisplay = `${minutesDisplay.toString().padStart(2, "0")}:${secondsDisplay.toString().padStart(2, "0")}`;
     return timeDisplay;
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe from WebSocket messages and close the connection
+    this.messageSubscription.unsubscribe();
+    this.webSocketService.closeConnection();
   }
 }

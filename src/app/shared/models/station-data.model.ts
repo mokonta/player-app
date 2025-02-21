@@ -1,8 +1,21 @@
 export class CustomFields {
   dj_url: string;
+  dj_url_instagram: string;
+  dj_url_tiktok: string;
+  dj_url_mixcloud: string;
+  dj_url_soundcloud: string;
+  date_uploaded: Date;
+  description: string;
 
   constructor() {
     this.dj_url = "";
+    this.dj_url_instagram = "";
+    this.dj_url_tiktok = "";
+    this.dj_url_mixcloud = "";
+    this.dj_url_soundcloud = "";
+    this.dj_url_tiktok = "";
+    this.date_uploaded = new Date();
+    this.description = "";
   }
 }
 
@@ -138,7 +151,7 @@ export class SongHistory {
   }
 }
 
-export class NowPlayingModel {
+export class StationDataModel {
   listeners: Listeners;
   live: Live;
   now_playing: NowPlaying;

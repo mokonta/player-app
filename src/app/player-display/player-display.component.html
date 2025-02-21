@@ -5,16 +5,16 @@
             <h3>Now</h3>
             <div class="row">
                 <div class="col-12 col-md-2 song-art">
-                    <img [src]="nowPlayingImage" class="img-fluid" [alt]="nowPlayingData.now_playing.song.title" />
+                    <img [src]="nowPlayingImage" class="img-fluid" [alt]="stationData.now_playing.song.title" />
                 </div>
                 <div class="col song-details">
                     <p>
-                        {{ nowPlayingData.now_playing.song.title }} <br />
+                        {{ stationData.now_playing.song.title }} <br />
                         @if (nowPlayingDjUrl) {
-                        <a [href]="nowPlayingDjUrl" target="_blank">{{ nowPlayingData.now_playing.song.artist }}</a>
+                        <a [href]="nowPlayingDjUrl" target="_blank">{{ stationData.now_playing.song.artist }}</a>
                         }
                         @else {
-                        {{ nowPlayingData.now_playing.song.artist }}
+                        {{ stationData.now_playing.song.artist }}
                         } <br />
                         {{ elapsedTimeDisplay }} / {{ durationDisplay }}
                     </p>
@@ -27,16 +27,16 @@
             <h3>Next</h3>
             <div class="row">
                 <div class="col-12 col-md-2 song-art">
-                    <img [src]="nextPlayingImage" class="img-fluid" [alt]="nowPlayingData.playing_next.song.title" />
+                    <img [src]="nextPlayingImage" class="img-fluid" [alt]="stationData.playing_next.song.title" />
                 </div>
                 <div class="col song-details">
                     <p>
-                        {{ nowPlayingData.playing_next.song.title }} <br />
+                        {{ stationData.playing_next.song.title }} <br />
                         @if (nextDjUrl) {
-                        <a [href]="nextDjUrl" target="_blank">{{ nowPlayingData.playing_next.song.artist }}</a>
+                        <a [href]="nextDjUrl" target="_blank">{{ stationData.playing_next.song.artist }}</a>
                         }
                         @else {
-                        {{ nowPlayingData.playing_next.song.artist }}
+                        {{ stationData.playing_next.song.artist }}
                         }
                     </p>
                 </div>
