@@ -1,7 +1,23 @@
 .player-display {
     
+    .song-art {
+        // position: relative;
+        // height: 400px;
+        // width: 100%;
+        // padding: 10px;
+
+        // @media (min-width: 768px) {
+        //     width: 400px;
+        // }
+    }
+
     .song-art img {
         border-radius: 10px;
+        object-fit: cover;
+        object-position: 50% 50%;
+
+        height: 380px;
+        width: 380px;
         @media (min-width: 768px) {
             margin-bottom: 2em;
         }

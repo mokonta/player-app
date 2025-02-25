@@ -5,7 +5,7 @@
             <h3>Now</h3>
             <div class="row">
                 <div class="col-12 col-md-2 song-art">
-                    <img [src]="nowPlayingImage" class="img-fluid" [alt]="stationData.now_playing.song.title" />
+                    <img [ngSrc]="nowPlayingImage" [alt]="stationData.now_playing.song.title" width="390" height="390" priority />
                 </div>
                 <div class="col song-details">
                     <p>
@@ -22,12 +22,12 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col next-up">
             <h3>Next</h3>
             <div class="row">
                 <div class="col-12 col-md-2 song-art">
-                    <img [src]="nextPlayingImage" class="img-fluid" [alt]="stationData.playing_next.song.title" />
+                    <img [ngSrc]="nextPlayingImage" [alt]="stationData.playing_next.song.title" height="200" width="200" />
                 </div>
                 <div class="col song-details">
                     <p>
@@ -42,6 +42,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     }
 </section>
